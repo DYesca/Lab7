@@ -12,11 +12,15 @@
         @endforeach
     </div>
     <hr>
+
+
     <a href="/tasks/{{ $task->id }}/edit" class="btn btn-primary">Editar</a>
+
     <form action="/tasks/{{ $task->id }}" method="POST" style="display:inline;">
         @csrf
         @method('delete')
-        <button type="submit" class="btn btn-warning" onclick="return confirm('¿Estás seguro de que deseas eliminar esta tarea?')">Eliminar</button>
+        <button type="submit" class="btn btn-warning"
+            onclick="return confirm('¿Estás seguro de que deseas eliminar esta tarea?')">Eliminar</button>
     </form>
     <a href="{{ route('tasks.index') }}" class="btn btn-primary">Regresar</a>
 </div>

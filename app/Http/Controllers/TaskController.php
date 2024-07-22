@@ -6,7 +6,10 @@ use App\Models\Priority;
 use App\Models\Tag;
 use App\Models\Task;
 use App\Models\User;
+use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate as Authorize;
 
 class TaskController extends Controller
 {
@@ -56,15 +59,52 @@ class TaskController extends Controller
         } else {
             $task->tags()->detach();
         }
+
+        /*
+        Task::create([
+        ...$data,
+        'user_id' => auth()->id(),
+        ]);
+        */
+
         return redirect('/tasks');
     }
 
     public function edit(Task $task)
     {
+
+        /*
+        Gate::define('update-task', function (User $user, Task $task) {
+            return $user->id == $task->user_id;
+        });
+
+        
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+
+        if($task->user->isNot(auth()->user())){
+            abort(403);
+        }
+        */
+
+       // Gate::authorize('update-task', $task);
+       // auth()->user()->can('update-task', $task);
+
+       Authorize::authorize('update', $task);
+       
         return view('tasks.edit', [
             'task' => $task,
             'tags' => Tag::all()
         ]);
+
+
+        /*
+        if (auth()->user()->id != $task->user_id) {
+            return redirect('/tasks');
+        }
+        */
+
     }
 
     public function update(Task $task)

@@ -1,8 +1,29 @@
 @extends('layouts.app')
 @section('content')
+<div>
+    <h4>
+        @auth
+          Bienvenido,  {{ auth()->user()->name }}
+        @endauth
+
+    </h4>
+</div>
 <h2 class="display-6 text-center mb-4">Tareas</h2>
 
-<a href="/tasks/create" class="btn btn-outline-primary">Nueva Tarea</a>
+@if(auth()->check())
+    <a href="/tasks/create" class="btn btn-outline-primary">Nueva Tarea</a>
+@else
+    <div class="alert alert-warning" role="alert">
+        Solo los usuarios logueados pueden crear una tarea.
+    </div>
+@endif
+
+@if(!auth()->check())
+    <div class="alert alert-danger" role="alert">
+        Debes estar logueado para ver una tarea.
+    </div>
+@endif
+
 <div class="table-responsive">
     <table class="table text-left">
         <thead>

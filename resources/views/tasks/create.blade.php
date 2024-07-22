@@ -38,9 +38,7 @@
     <div>
         <label class="form-label" for="name">Usuario</label>
         <select name="user_id" id="user_id" class="form-control">
-            @foreach ($users as $user)
-                <option value="{{ $user->id }}">{{ $user->name }}</option>
-            @endforeach
+            <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>
         </select>
         @error('user_id')
             <p>{{ $message }}</p>
