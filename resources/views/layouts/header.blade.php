@@ -16,7 +16,7 @@
             @guest
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none"
                     href=" {{ route('register.create') }} ">Register</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href=" {{ route('login.create') }} ">Login</a>
+                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href=" {{ route('login') }} ">Login</a>
             @endguest
             @auth
                 @csrf

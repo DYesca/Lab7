@@ -25,7 +25,7 @@ Route::delete('/tasks/{task}', [TaskController::class, 'delete'])->name('tasks.d
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register.create');    
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
-Route::get('/login', [SessionController::class, 'create'])->name('login.create');
+Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store'])->name('login.store');
 Route::get('/logout', [SessionController::class, 'destroy'])->name('logout');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
